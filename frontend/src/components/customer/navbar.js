@@ -10,7 +10,6 @@ function customerNavBar() {
         <Nav className="mr-auto">
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/orders">My Orders</Nav.Link>
-          <Nav.Link href="/vendors">Vendors</Nav.Link>
         </Nav>
         <Nav>
           <Nav.Link href="/profile">My Profile</Nav.Link>

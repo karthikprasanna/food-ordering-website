@@ -47,6 +47,7 @@ vendorRoutes.route('/order/customer/:id').get(function (req, res) {
 // Get all orders by vendor
 vendorRoutes.route('/order/vendor/:id').get(function (req, res) {
     let id = req.params.id;
+    console.log(id)
     Order.find({ "vendor": id }, function (err, order) {
         if (err) {
             console.log(err);
@@ -64,6 +65,7 @@ vendorRoutes.route('/order/vendor/:id').get(function (req, res) {
 // Get all orders for product
 vendorRoutes.route('/order/product/:id').get(function (req, res) {
     let id = req.params.id;
+    console.log(id)
     Order.find({ "product": id }, function (err, order) {
         if (err) {
             console.log(err);
@@ -112,6 +114,23 @@ vendorRoutes.route('/order/change_quantity/:id').put((req, res) => {
         else {
             order.quantity=req.body.newQuantity
             order.save()
+            res.json("SUCCESS")
+        }
+    })
+})
+
+// change the status of the given Order to req.body.status
+vendorRoutes.route('/order/change_status/:id').put((req, res) => {
+    const id = req.params.id
+    console.log(id)
+    Order.findById(id, (err, Order) => {
+        console.log(req)
+        if (err) {
+            console.log(err)
+        }
+        else {
+            Order.status = req.body.status
+            Order.save()
             res.json("SUCCESS")
         }
     })

@@ -15,19 +15,14 @@ connection.once('open', function () {
 // API endpoints
 
 var userRoutes = require('./api/users');
-var buyerRoutes = require('./api/buyer');
-var vendorRoutes = require('./api/vendor');
 var productRoutes = require('./api/product');
 var orderRoutes = require('./api/order')
-var rateRoutes = require('./api/vendorRating')
+
 
 
 app.use('/', userRoutes);
-app.use('/', buyerRoutes);
-app.use('/', vendorRoutes);
 app.use('/', productRoutes);
 app.use('/', orderRoutes);
-app.use('/', rateRoutes);
 
 
 app.listen(PORT, function () {

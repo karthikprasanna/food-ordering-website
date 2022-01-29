@@ -202,10 +202,11 @@ function ViewProducts(props) {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Vendor</th>
-                            <th>Total Quantity for Dispatch</th>
-                            <th>Quantity remaining for Dispatch</th>
+                            <th>Quantity remaining:</th>
                             <th>Description</th>
-                            <th>Vendor rating</th>
+                            <th>Rating</th>
+                            <th>Veg/Non-veg</th>
+                            <th>Adds On</th>
                             <th>Order Now!</th>
                         </tr>
                     </thead>
@@ -217,10 +218,11 @@ function ViewProducts(props) {
                                         <td>{currentProduct.name}</td>
                                         <td>{currentProduct.price}</td>
                                         <td>{(() => getname(currentProduct.vendor))()}</td>
-                                        <td>{currentProduct.total_quantity}</td>
                                         <td>{currentProduct.quantity_remaining}</td>
                                         <td>{currentProduct.description}</td>
-                                        <td>{(() => get_rating(currentProduct.vendor))()}</td>
+                                        <td>{currentProduct.rating}</td>
+                                        <td>{currentProduct.veggie}</td>
+                                        <td>{currentProduct.addon}</td>
                                         <td><Button variant="primary" onClick={() => makeOrder(currentProduct._id)} value={currentProduct._id}>Order</Button></td>
                                     </tr>
                                 )

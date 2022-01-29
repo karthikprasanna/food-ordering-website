@@ -1,7 +1,6 @@
 var express = require('express');
 let User = require('../models/user');
-let Buyer = require('../models/buyer');
-let Vendor = require('../models/vendor');
+
 const userRoutes = express.Router();
 
 // Get all users-tested

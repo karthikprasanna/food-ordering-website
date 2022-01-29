@@ -5,6 +5,7 @@ function MakeOrder(props) {
 
     let productID = ""
     const [product, setProduct] = useState("")
+    const [addbool, setAddbool] = useState("yes")
     const [quantity, setQuantity] = useState(0)
     const [allUsers, setAllUsers] = useState([])
     const [allRatings, setAllRatings] = useState([])
@@ -81,7 +82,10 @@ function MakeOrder(props) {
                 product: productID,
                 quantity: quantity,
                 vendor: product.vendor,
-                customer: a
+                customer: a,
+                cost: product.price,
+                rating: product.rating,
+                
             }
             const order_decrement = {
                 order_value: quantity
@@ -125,11 +129,7 @@ function MakeOrder(props) {
                             <td>{(() => getname(product.vendor))()}</td>
                         </tr>
                         <tr>
-                            <th>Total Quantity for Dispatch</th>
-                            <td> {product.total_quantity} </td>
-                        </tr>
-                        <tr>
-                            <th>Quantity remaining for Dispatch</th>
+                            <th>Quantity remaining:</th>
                             <td> {product.quantity_remaining} </td>
                         </tr>
                         <tr>
@@ -137,12 +137,16 @@ function MakeOrder(props) {
                             <td> {product.description} </td>
                         </tr>
                         <tr>
-                            <th>Status</th>
-                            <td> {product.status} </td>
+                            <th>Rating</th>
+                            <td> {product.rating}</td>
                         </tr>
                         <tr>
-                            <th>Vendor rating</th>
-                            <td> {(() => get_rating(product.vendor))()}</td>
+                            <th>Veg/Non-veg</th>
+                            <td>{product.veggie}</td>
+                        </tr>
+                        <tr>
+                            <th>Adds On</th>
+                            <td>{product.addon}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -162,6 +166,19 @@ function MakeOrder(props) {
                             onChange={e => setQuantity(e.target.value)}
                         />
                     </div>
+                    <div className="form-group">
+                        <label>Need Adds On? </label>
+                        <select
+                            id = "addbool"
+                            className="form-control"
+                            value={addbool}
+                            onChange={e => {
+                                setAddbool(e.target.value)}}
+                        >
+                            <option value='yes' selected>yes</option>
+                            <option value='no' >no</option>
+                        </select>
+                </div>
                     <div className="form-group">
                         <input type="submit" value="ORDER NOW" className="btn btn-primary" />
                     </div>

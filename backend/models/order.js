@@ -31,7 +31,7 @@ let Order = new mongoose.Schema({
     status: {
         type: String,
         enum: ['Waiting', 'Placed','PLACED','ACCEPTED','COOKING','READY FOR PICKUP', 'COMPLETED', 'REJECTED', 'Dispatched', 'Cancelled'],
-        default: 'Waiting'
+        default: 'PLACED'
     }
 
 

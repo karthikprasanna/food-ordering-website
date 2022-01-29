@@ -3,11 +3,18 @@ import axios from 'axios';
 
 function AddProduct() {
     const [name, setName] = useState("")
+    const [tag, setTag] = useState("snack")
+    const [veggie, setVeggie] = useState("veg")
+    const [addon, setAddon] = useState("")
     const [price, setPrice] = useState(0)
     const [total_quantity, setTotal_quantity] = useState(0)
     const [images, setImages] = useState("")
     const [description, setDescription] = useState('')
 
+    const changeTag = (e) => {
+        setTag(e.target.value)
+        console.log(e.target.value)
+    }
     function addit(e) {
         e.preventDefault();
         a = localStorage.getItem("DASS_USERID")
@@ -16,6 +23,7 @@ function AddProduct() {
             document.getElementById("comments").className = "alert alert-danger alert-dismissible fade show"
         }
         else {
+            console.log(tag)
             const productDetails = {
                 name: name,
                 price: price,
@@ -23,7 +31,11 @@ function AddProduct() {
                 quantity_remaining: total_quantity,
                 vendor: a,
                 images: images,
-                description: description
+                description: description,
+                 addon: addon,
+                 tag: tag,
+                 veggie: veggie
+
             }
             var a = 0
             console.log("sending", productDetails)
@@ -32,7 +44,6 @@ function AddProduct() {
                     res => {
                         document.getElementById("comments").innerHTML = "Added successfully"
                         document.getElementById("comments").className = "alert alert-success alert-dismissible fade show"
-                        window.location.replace('products')
                     })
                 .catch(function (error) {
                     console.log(error)
@@ -85,6 +96,40 @@ function AddProduct() {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
+                </div>
+                <div className="form-group">
+                    <label>Adds On: </label>
+                    <input type="text"
+                        className="form-control"
+                        value={addon}
+                        onChange={e => setAddon(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                        <label>Tag: </label>
+                        <select
+                            id= "tag"
+                            className="form-control"
+                            value={tag}
+                            onChange={changeTag}
+                        >
+                            <option value='snack' selected >snack</option>
+                            <option value='sweet' >sweet</option>
+                            <option value='drinks' >drinks</option>
+                        </select>
+                </div>
+                <div className="form-group">
+                        <label>Veg/Non- veg: </label>
+                        <select
+                            id = "veggie"
+                            className="form-control"
+                            value={veggie}
+                            onChange={e => {console.log(e.target.value)
+                                setVeggie(e.target.value)}}
+                        >
+                            <option value='veg' selected>veg</option>
+                            <option value='nonveg' >nonveg</option>
+                        </select>
                 </div>
                 <div className="form-group">
                     <input type="submit" value="ADD PRODUCT" className="btn btn-primary" />

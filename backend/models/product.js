@@ -34,10 +34,13 @@ let Product = new mongoose.Schema({
         type: String,
         enum: ['veg', 'nonveg']
     },
-    status: {
+    addon: {
+        type: String
+    },
+    tag: {
         type: String,
-        enum: ['Waiting', 'Placed','PLACED','ACCEPTED','COOKING','READY FOR PICKUP', 'COMPLETED', 'REJECTED', 'Dispatched', 'Cancelled'],
-        default: 'Waiting'
-    }
+        enum: ['drinks', 'snack', 'sweet']
+    },
+   
 });
 module.exports = mongoose.model('Product', Product);

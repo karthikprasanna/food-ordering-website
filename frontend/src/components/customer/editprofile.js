@@ -7,7 +7,7 @@ function EditProfile() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [batch, setBatch] = useState('')
+    const [batch, setBatch] = useState('UG2')
     const [contactnumber, setContactnumber] = useState('')
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
@@ -60,7 +60,6 @@ function EditProfile() {
             email: email,
             password: window.btoa(password),
             batch: batch
-         
         }
         axios.post('http://localhost:4000/user/update', newUser)
             .then(res => {

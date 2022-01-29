@@ -8,6 +8,7 @@ function ViewOrders(props) {
     const [order, setOrder] = useState([])
     const [allUsers, setAllUsers] = useState([])
     const [allProducts, setAllProducts] = useState([])
+    const [allOrders, setAllOrders] = useState([])
 
     useEffect(() => {
         let a = localStorage.getItem('DASS_USERID')
@@ -30,6 +31,12 @@ function ViewOrders(props) {
             .then(response => {
                 setAllProducts(response.data)
             })
+
+              // also get the list of all the orders
+        axios.get('http://localhost:4000/order/showall/')
+        .then(response => {
+            setAllOrders(response.data)
+        })
     }, []);
 
     function getname(name) {
@@ -58,48 +65,38 @@ function ViewOrders(props) {
         return (results[0].name)
     }
 
-    function getPstatus(name){
-        if (name == "") {
-            return ""
-        }
-        var results = allProducts.filter(function (i) {
-            return i._id == name
-        })
-        if (results[0] == undefined) {
-            return ""
-        }
-        return (results[0].status)
-    }
-
-    function giveReview(e) {
-        orderID = e
-        localStorage.setItem("DASS_ORDERID", orderID)
-        console.log(orderID)
-        window.location.replace("/givereview")
-    }
-
+  
+    console.log({order})
+    console.log(order)
     return (
         <div>
             <table className="table table-hover thead-light table-responsive-lg ">
                 <thead>
                     <tr>
-                        <th>Product</th>
+                        <th>Placed Time</th>
+                        <th>Vendor Name</th>
+                        <th>Food Item</th>
                         <th>Quantity</th>
-                        <th>Vendor</th>
                         <th>Status</th>
-                        <th>Give Rating/Review</th>
+                        <th>Cost</th>
+                        <th>rating</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     {
+                       
                         { order }.order.map((currentOrder, i) => {
                             return (
                                 <tr>
+                                    <td>{currentOrder.time}</td>
+                                    <td>{(() => getname(currentOrder.vendor))()}</td>
                                     <td> {(() => getPname(currentOrder.product))()}</td>
                                     <td>{currentOrder.quantity}</td>
-                                    <td>{(() => getname(currentOrder.vendor))()}</td>
-                                    <td>{(() => getPstatus(currentOrder.product))()}</td>
-                                    <td><Button variant="primary" onClick={() => giveReview(currentOrder._id)} value={currentOrder._id}>View more details</Button></td>
+                                    <td>{currentOrder.status}</td>
+                                    <td>{currentOrder.cost}</td>
+                                    <td>{currentOrder.rating}</td>
+                                    
                                 </tr>
                             )
                         })
