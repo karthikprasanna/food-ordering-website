@@ -39,7 +39,6 @@ let User = new mongoose.Schema({
     },
     shopname: {
         type: String,
-        unique: true
     },
     managername: {
         type: String,  
