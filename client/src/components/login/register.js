@@ -11,7 +11,7 @@ export default class CreateUser extends Component {
             password: '',
             address: '',
             phone: '',
-            type: ''
+            type: 'Vendor'
         }
         this.onChangeUsername = this.onChangeUsername.bind(this)
         this.onChangeEmail = this.onChangeEmail.bind(this)
@@ -61,7 +61,7 @@ export default class CreateUser extends Component {
                         password: '',
                         address: '',
                         phone: '',
-                        type: ''
+                        type: 'Vendor'
                     })
                     document.getElementById("comments").innerHTML = "Success"
                     document.getElementById("comments").className = "alert alert-success alert-dismissible fade show"
@@ -131,7 +131,7 @@ export default class CreateUser extends Component {
                         <select
                             id='type_dd'
                             className="form-control"
-                            value={this.state.type}
+                            value='Vendor'
                             onChange={this.onChangeType}
                         >
                             <option value='Vendor' selected>Vendor</option>
