@@ -39,6 +39,7 @@ userRoutes.route('/user/getnames').get(function (req, res) {
 // Add a new user-tested
 userRoutes.route('/user/register').post(function (req, res) {
     let user = new User(req.body);
+    console.log("adding user");
     console.log(user)
 
     user
